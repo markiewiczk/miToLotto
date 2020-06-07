@@ -4,9 +4,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import pl.wisniewsky.dao.LottoDAO;
 import pl.wisniewsky.model.Lotto;
 
 import java.util.Date;
+import java.util.List;
 
 public class App {
     private static SessionFactory factory;
@@ -19,14 +21,18 @@ public class App {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-        Lotto lotto = new Lotto("37,16,19,31,2,4", 1, new Date(), 444);
 
         Session session = factory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(lotto);
-//        Lotto lotto = session.get(Lotto.class, 1);
-        transaction.commit();
-        session.close();
+        LottoDAO lottoDAO = new LottoDAO(session);
+
+        Lotto lotto = lottoDAO.get(0);
+
+//        List<Lotto> listaLosowawn = lottoDAO.getAll();
+//        for (Lotto lotto : listaLosowawn) {
+//            System.out.println(lotto);
+//        }
+
+        lottoDAO.close();
         factory.close();
     }
 }
