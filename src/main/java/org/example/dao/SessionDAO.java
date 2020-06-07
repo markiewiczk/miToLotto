@@ -1,4 +1,7 @@
 package org.example.dao;
 
-public class SessionDAO {
+public abstract class SessionDAO<T> implements DAO<T> {
+
+
+    public SessionDAO
 }
