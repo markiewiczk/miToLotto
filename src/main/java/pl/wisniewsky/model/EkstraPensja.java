@@ -8,11 +8,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "Lotto")
-public class Lotto implements Serializable {
+@Table(name = "EkstraPensja")
+public class EkstraPensja implements Serializable {
     @Id
     @Column(name = "numLosowania", unique = true, nullable = false)
     private Integer numLosowania;
+
+    @Column(name = "extra")
+    private Integer extra;
 
     @Column(name = "numerki")
     private String numerki;
@@ -23,42 +26,52 @@ public class Lotto implements Serializable {
     @Column(name = "superszansaId")
     private Integer superszansaId;
 
-    public Lotto() {
+
+    public EkstraPensja() {
     }
 
-    public Lotto(String numerki, Integer numLosowania, Date dataLosowania, Integer superszansaId) {
-        this.numerki = numerki;
+    public EkstraPensja(Integer numLosowania, Integer extra, String numerki, Date dataLosowania, Integer superszansaId) {
         this.numLosowania = numLosowania;
+        this.extra = extra;
+        this.numerki = numerki;
         this.dataLosowania = dataLosowania;
         this.superszansaId = superszansaId;
-    }
-
-    public String getNumerki() {
-        return numerki;
-    }
-
-    public void setNumerki(String numerki) {
-        this.numerki = numerki;
     }
 
     public Integer getNumLosowania() {
         return numLosowania;
     }
 
-    public void setNumLosowania(Integer numLosowania) {
-        this.numLosowania = numLosowania;
+    public Integer getExtra() {
+        return extra;
+    }
+
+    public String getNumerki() {
+        return numerki;
     }
 
     public Date getDataLosowania() {
         return dataLosowania;
     }
 
-    public void setDataLosowania(Date dataLosowania) {
-        this.dataLosowania = dataLosowania;
-    }
-
     public Integer getSuperszansaId() {
         return superszansaId;
+    }
+
+    public void setNumLosowania(Integer numLosowania) {
+        this.numLosowania = numLosowania;
+    }
+
+    public void setExtra(Integer extra) {
+        this.extra = extra;
+    }
+
+    public void setNumerki(String numerki) {
+        this.numerki = numerki;
+    }
+
+    public void setDataLosowania(Date dataLosowania) {
+        this.dataLosowania = dataLosowania;
     }
 
     public void setSuperszansaId(Integer superszansaId) {
@@ -67,9 +80,10 @@ public class Lotto implements Serializable {
 
     @Override
     public String toString() {
-        return "Lotto{" +
-                "numerki='" + numerki + '\'' +
-                ", numLosowania=" + numLosowania +
+        return "EkstraPensja{" +
+                "numLosowania=" + numLosowania +
+                ", extra=" + extra +
+                ", numerki='" + numerki + '\'' +
                 ", dataLosowania=" + dataLosowania +
                 ", superszansaId=" + superszansaId +
                 '}';

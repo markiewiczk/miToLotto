@@ -11,7 +11,8 @@ import java.util.Date;
 public class App {
     private static SessionFactory factory;
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
+
         try {
             factory = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {

@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "Lotto")
-public class Lotto implements Serializable {
+@Table(name = "Mini")
+public class Mini implements Serializable {
     @Id
     @Column(name = "numLosowania", unique = true, nullable = false)
     private Integer numLosowania;
@@ -23,10 +23,10 @@ public class Lotto implements Serializable {
     @Column(name = "superszansaId")
     private Integer superszansaId;
 
-    public Lotto() {
+    public Mini() {
     }
 
-    public Lotto(String numerki, Integer numLosowania, Date dataLosowania, Integer superszansaId) {
+    public Mini(String numerki, Integer numLosowania, Date dataLosowania, Integer superszansaId) {
         this.numerki = numerki;
         this.numLosowania = numLosowania;
         this.dataLosowania = dataLosowania;
@@ -67,7 +67,7 @@ public class Lotto implements Serializable {
 
     @Override
     public String toString() {
-        return "Lotto{" +
+        return "Mini{" +
                 "numerki='" + numerki + '\'' +
                 ", numLosowania=" + numLosowania +
                 ", dataLosowania=" + dataLosowania +

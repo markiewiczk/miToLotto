@@ -5,12 +5,15 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://77.55.216.222:3306/test</property>
-        <property name="hibernate.connection.username">jacek</property>
+        <property name="hibernate.connection.url">jdbc:mysql://77.55.216.222:3306/BartekDB</property>
+        <property name="hibernate.connection.username">wisnia</property>
         <property name="hibernate.connection.password">test1234</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="pl.wisniewsky.model.Lotto"></mapping>
+        <mapping class="pl.wisniewsky.model.LottoPlus"></mapping>
+        <mapping class="pl.wisniewsky.model.Mini"></mapping>
+        <mapping class="pl.wisniewsky.model.Joker"></mapping>
     </session-factory>
 </hibernate-configuration>
