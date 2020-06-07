@@ -1,10 +1,13 @@
 package pl.wisniewsky.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -12,13 +15,14 @@ import java.util.Date;
 public class Lotto implements Serializable {
     @Id
     @Column(name = "numLosowania", unique = true, nullable = false)
+    @SerializedName("num_losowania")
     private Integer numLosowania;
 
     @Column(name = "numerki")
     private String numerki;
 
     @Column(name = "dataLosowania")
-    private Date dataLosowania;
+    private LocalDateTime dataLosowania;
 
     @Column(name = "superszansaId")
     private Integer superszansaId;
@@ -26,7 +30,7 @@ public class Lotto implements Serializable {
     public Lotto() {
     }
 
-    public Lotto(String numerki, Integer numLosowania, Date dataLosowania, Integer superszansaId) {
+    public Lotto(String numerki, Integer numLosowania, LocalDateTime dataLosowania, Integer superszansaId) {
         this.numerki = numerki;
         this.numLosowania = numLosowania;
         this.dataLosowania = dataLosowania;
@@ -49,11 +53,11 @@ public class Lotto implements Serializable {
         this.numLosowania = numLosowania;
     }
 
-    public Date getDataLosowania() {
+    public LocalDateTime getDataLosowania() {
         return dataLosowania;
     }
 
-    public void setDataLosowania(Date dataLosowania) {
+    public void setDataLosowania(LocalDateTime dataLosowania) {
         this.dataLosowania = dataLosowania;
     }
 

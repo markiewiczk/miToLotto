@@ -1,10 +1,13 @@
 package pl.wisniewsky.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -12,6 +15,7 @@ import java.util.Date;
 public class EkstraPensja implements Serializable {
     @Id
     @Column(name = "numLosowania", unique = true, nullable = false)
+    @SerializedName("num_losowania")
     private Integer numLosowania;
 
     @Column(name = "extra")
@@ -21,7 +25,7 @@ public class EkstraPensja implements Serializable {
     private String numerki;
 
     @Column(name = "dataLosowania")
-    private Date dataLosowania;
+    private LocalDateTime dataLosowania;
 
     @Column(name = "superszansaId")
     private Integer superszansaId;
@@ -30,7 +34,7 @@ public class EkstraPensja implements Serializable {
     public EkstraPensja() {
     }
 
-    public EkstraPensja(Integer numLosowania, Integer extra, String numerki, Date dataLosowania, Integer superszansaId) {
+    public EkstraPensja(Integer numLosowania, Integer extra, String numerki, LocalDateTime dataLosowania, Integer superszansaId) {
         this.numLosowania = numLosowania;
         this.extra = extra;
         this.numerki = numerki;
@@ -50,7 +54,7 @@ public class EkstraPensja implements Serializable {
         return numerki;
     }
 
-    public Date getDataLosowania() {
+    public LocalDateTime getDataLosowania() {
         return dataLosowania;
     }
 
@@ -70,7 +74,7 @@ public class EkstraPensja implements Serializable {
         this.numerki = numerki;
     }
 
-    public void setDataLosowania(Date dataLosowania) {
+    public void setDataLosowania(LocalDateTime dataLosowania) {
         this.dataLosowania = dataLosowania;
     }
 

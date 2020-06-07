@@ -1,10 +1,13 @@
 package pl.wisniewsky.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -12,13 +15,14 @@ import java.util.Date;
 public class Joker implements Serializable {
     @Id
     @Column(name = "numLosowania", unique = true, nullable = false)
+    @SerializedName("num_losowania")
     private Integer numLosowania;
 
     @Column(name = "numerki")
     private String numerki;
 
     @Column(name = "dataLosowania")
-    private Date dataLosowania;
+    private LocalDateTime dataLosowania;
 
     @Column(name = "superszansaId")
     private Integer superszansaId;
@@ -29,7 +33,7 @@ public class Joker implements Serializable {
     public Joker() {
     }
 
-    public Joker(Integer numLosowania, String numerki, Date dataLosowania, Integer superszansaId, Integer joker) {
+    public Joker(Integer numLosowania, String numerki, LocalDateTime dataLosowania, Integer superszansaId, Integer joker) {
         this.numLosowania = numLosowania;
         this.numerki = numerki;
         this.dataLosowania = dataLosowania;
@@ -45,7 +49,7 @@ public class Joker implements Serializable {
         return numerki;
     }
 
-    public Date getDataLosowania() {
+    public LocalDateTime getDataLosowania() {
         return dataLosowania;
     }
 
@@ -65,7 +69,7 @@ public class Joker implements Serializable {
         this.numerki = numerki;
     }
 
-    public void setDataLosowania(Date dataLosowania) {
+    public void setDataLosowania(LocalDateTime dataLosowania) {
         this.dataLosowania = dataLosowania;
     }
 
