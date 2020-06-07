@@ -20,7 +20,7 @@ public class App {
             throw new ExceptionInInitializerError(ex);
         }
 
-        Lotto lotto = new Lotto(1, "37,16,19,31,2,4", new Date(), 444);
+        Lotto lotto = new Lotto("37,16,19,31,2,4", 1, new Date(), 444);
 
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
