@@ -15,5 +15,6 @@
         <mapping class="pl.wisniewsky.model.LottoPlus"></mapping>
         <mapping class="pl.wisniewsky.model.Mini"></mapping>
         <mapping class="pl.wisniewsky.model.Joker"></mapping>
+
     </session-factory>
 </hibernate-configuration>

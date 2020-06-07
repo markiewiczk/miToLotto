@@ -19,7 +19,6 @@ public class App {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-
         Lotto lotto = new Lotto("37,16,19,31,2,4", 1, new Date(), 444);
 
         Session session = factory.openSession();
@@ -28,5 +27,6 @@ public class App {
 //        Lotto lotto = session.get(Lotto.class, 1);
         transaction.commit();
         session.close();
+        factory.close();
     }
 }
