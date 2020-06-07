@@ -12,5 +12,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="pl.wisniewsky.model.Lotto"></mapping>
+        <mapping class="pl.wisniewsky.model.LottoPlus"></mapping>
+
     </session-factory>
 </hibernate-configuration>
