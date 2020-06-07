@@ -21,14 +21,14 @@ public class Lotto implements Serializable {
     private Date dataLosowania;
 
     @Column(name = "superszansaId")
-    private Integer superszansaId;
+    private int superszansaId;
 
     public Lotto() {
     }
 
-    public Lotto(String numerki, Integer numLosowania, Date dataLosowania, Integer superszansaId) {
-        this.numerki = numerki;
+    public Lotto(Integer numLosowania, String numerki, Date dataLosowania, int superszansaId) {
         this.numLosowania = numLosowania;
+        this.numerki = numerki;
         this.dataLosowania = dataLosowania;
         this.superszansaId = superszansaId;
     }
@@ -57,11 +57,11 @@ public class Lotto implements Serializable {
         this.dataLosowania = dataLosowania;
     }
 
-    public Integer getSuperszansaId() {
+    public int getSuperszansaId() {
         return superszansaId;
     }
 
-    public void setSuperszansaId(Integer superszansaId) {
+    public void setSuperszansaId(int superszansaId) {
         this.superszansaId = superszansaId;
     }
 
