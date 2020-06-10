@@ -31,14 +31,14 @@ public class App {
 //
 //        Session session = factory.openSession();
 //        LottoDAO lottoDAO = new LottoDAO(session);
-//
+//lottoDAO.save(games.getLotto());
 //        Lotto lotto = lottoDAO.get(0);
-//
-////        List<Lotto> listaLosowawn = lottoDAO.getAll();
-////        for (Lotto lotto : listaLosowawn) {
-////            System.out.println(lotto);
-////        }
-//
+
+//        List<Lotto> listaLosowawn = lottoDAO.getAll();
+//        for (Lotto lotto : listaLosowawn) {
+//            System.out.println(lotto);
+//        }
+
 //        lottoDAO.close();
 //        factory.close();
     }

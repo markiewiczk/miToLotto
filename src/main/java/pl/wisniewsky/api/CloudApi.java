@@ -10,14 +10,18 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CloudApi implements GamesApi {
     private OkHttpClient httpClient = OkHttp.INSTANCE.getClient();
     private RequestBuilder requestBuilder = new GamesRequestBuilder();
     private Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+        private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
         @Override
-        public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-            return ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString()).toLocalDateTime();
+        public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            return LocalDateTime.parse(json.getAsString(), formatter);
         }
     }).create();
 

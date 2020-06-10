@@ -47,4 +47,14 @@ public class Games {
     public void setLottoPlus(LottoPlus lottoPlus) {
         this.lottoPlus = lottoPlus;
     }
+
+    @Override
+    public String toString() {
+        return "Games{" +
+                "lotto=" + lotto.toString() +
+                ", mini=" + mini.toString() +
+                ", joker=" + joker.toString() +
+                ", lottoPlus=" + lottoPlus.toString() +
+                '}';
+    }
 }

@@ -22,9 +22,11 @@ public class Mini implements Serializable {
     private String numerki;
 
     @Column(name = "dataLosowania")
+    @SerializedName("data_losowania")
     private LocalDateTime dataLosowania;
 
     @Column(name = "superszansaId")
+    @SerializedName("superszansa_id")
     private Integer superszansaId;
 
     public Mini() {
