@@ -1,45 +1,52 @@
 package pl.wisniewsky;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import pl.wisniewsky.api.CloudApi;
-import pl.wisniewsky.api.GamesApi;
-import pl.wisniewsky.dao.LottoDAO;
+import pl.wisniewsky.api.GameFetchListener;
+import pl.wisniewsky.db.SessionProvider;
+import pl.wisniewsky.db.dao.LottoDAO;
+import pl.wisniewsky.intervalchecker.GamesIntervalCheckExecutor;
+import pl.wisniewsky.intervalchecker.GamesIntervalCheckTask;
+import pl.wisniewsky.intervalchecker.TimePeriod;
 import pl.wisniewsky.model.Games;
 import pl.wisniewsky.model.Lotto;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-
 public class App {
-    private static SessionFactory factory;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        SessionProvider sessionProvider = SessionProvider.INSTANCE;
+        LottoDAO dao = new LottoDAO(sessionProvider.getSession());
 
-        GamesApi api = new CloudApi();
-        Games games = api.getGames();
-        System.out.println(games);
-//        try {
-//            factory = new Configuration().configure().buildSessionFactory();
-//        } catch (Throwable ex) {
-//            System.err.println("Failed to create sessionFactory object." + ex);
-//            throw new ExceptionInInitializerError(ex);
-//        }
-//
-//        Session session = factory.openSession();
-//        LottoDAO lottoDAO = new LottoDAO(session);
-//lottoDAO.save(games.getLotto());
-//        Lotto lotto = lottoDAO.get(0);
+        GamesIntervalCheckTask task = new GamesIntervalCheckTask(new GameFetchListener() {
+            @Override
+            public void onSuccess(Games games) {
+                Lotto gameFromApi = games.getLotto();
+//                Lotto gameFromDb = dao.get(games.getLotto().getNumLosowania());
+//                System.out.println("gameFromApi >>> " + gameFromApi.toString());
+//                if (gameFromDb == null) {
+//                    dao.save(gameFromApi);
+//                } else {
+//                    System.out.println("gameFromDb >>> " + gameFromDb.toString());
+//                    gameFromDb.setNumerki(gameFromApi.getNumerki());
+                    dao.update(gameFromApi);
+//                }
+            }
 
-//        List<Lotto> listaLosowawn = lottoDAO.getAll();
-//        for (Lotto lotto : listaLosowawn) {
-//            System.out.println(lotto);
-//        }
+            @Override
+            public void onFail(String errorMassage) {
+                System.out.println(errorMassage);
+            }
+        });
 
-//        lottoDAO.close();
-//        factory.close();
+        GamesIntervalCheckExecutor executor = new GamesIntervalCheckExecutor();
+        executor.checkInInterval(task, TimePeriod.NORMAL);
+
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        executor.stopChecking();
+        dao.close();
+        sessionProvider.closeFactory();
     }
 }

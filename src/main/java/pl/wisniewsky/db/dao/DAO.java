@@ -1,4 +1,4 @@
-package pl.wisniewsky.dao;
+package pl.wisniewsky.db.dao;
 
 import java.io.Serializable;
 import java.util.List;

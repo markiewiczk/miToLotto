@@ -1,4 +1,4 @@
-package pl.wisniewsky.dao;
+package pl.wisniewsky.db.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,7 +33,8 @@ public class LottoDAO extends SessionDAO<Lotto> {
     @Override
     public void update(Lotto objectToUpdate) {
         Transaction transaction = session.beginTransaction();
-        session.update(objectToUpdate);
+        session.saveOrUpdate(objectToUpdate);
+        session.evict(objectToUpdate);
         transaction.commit();
     }
 
